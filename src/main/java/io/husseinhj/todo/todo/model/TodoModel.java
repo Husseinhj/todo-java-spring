@@ -1,5 +1,7 @@
 package io.husseinhj.todo.todo.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -13,14 +15,14 @@ public class TodoModel {
     private final List<UUID> tags;
     private final double createdAt;
 
-    public TodoModel(UUID id,
-                     String body,
-                     String title,
-                     String userId,
-                     double modified,
-                     UUID categoryId,
-                     List<UUID> tags,
-                     double createdAt) {
+    public TodoModel(@JsonProperty("id") UUID id,
+                     @JsonProperty("body") String body,
+                     @JsonProperty("title") String title,
+                     @JsonProperty("userId") String userId,
+                     @JsonProperty("modified") double modified,
+                     @JsonProperty("categoryId") UUID categoryId,
+                     @JsonProperty("tags") List<UUID> tags,
+                     @JsonProperty("createdAt") double createdAt) {
         this.id = id;
         this.body = body;
         this.title = title;
