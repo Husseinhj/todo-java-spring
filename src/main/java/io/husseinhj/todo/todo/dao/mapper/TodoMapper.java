@@ -12,6 +12,10 @@ public class TodoMapper implements RowMapper<TodoModel> {
 
     @Override
     public TodoModel mapRow(ResultSet resultSet, int i) throws SQLException {
+        if (resultSet.getString("id") == null) {
+            return null;
+        }
+
         UUID id = UUID.fromString(resultSet.getString("id"));
         UUID userId = null;
         UUID categoryId = null;

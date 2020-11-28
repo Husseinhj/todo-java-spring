@@ -3,6 +3,7 @@ package io.husseinhj.todo.todo.dao;
 import io.husseinhj.todo.todo.dao.mapper.TodoMapper;
 import io.husseinhj.todo.todo.model.TodoModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -60,7 +61,12 @@ public class TodoDataAccessService implements TodoDao{
     public Optional<TodoModel> selectTodoById(UUID id) {
         final String query = "SELECT * FROM todo WHERE id = ?";
 
-        TodoModel model = this.jdbcTemplate.queryForObject(query, new TodoMapper(), id);
+        TodoModel model = null;
+        try {
+            model = this.jdbcTemplate.queryForObject(query, new TodoMapper(), id);
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
 
         return Optional.ofNullable(model);
     }
