@@ -1,10 +1,10 @@
 CREATE TABLE todo(
     id UUID NOT NULL PRIMARY KEY,
-    body VARCHAR(1000),
+    body VARCHAR(1000) NOT NULL,
     title VARCHAR(100),
     userId UUID,
-    modified TIMESTAMP,
+    modified BIGINT,
     categoryId UUID,
     tags UUID ARRAY,
-    createdAt TIMESTAMP
+    createdAt BIGINT
 )

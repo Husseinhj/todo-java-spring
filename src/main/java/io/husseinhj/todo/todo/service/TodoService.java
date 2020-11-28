@@ -19,7 +19,7 @@ public class TodoService {
         this.todoDao = todoDao;
     }
 
-    public UUID addTodo(TodoModel todoModel) {
+    public TodoModel addTodo(TodoModel todoModel) {
         return this.todoDao.insertTodo(todoModel);
     }
 
@@ -27,15 +27,19 @@ public class TodoService {
         return this.todoDao.selectAllTodo();
     }
 
+    public List<TodoModel> getTodoListByUserId(UUID userId){
+        return this.todoDao.selectTodoListByUserId(userId);
+    }
+
     public Optional<TodoModel> getTodoById(UUID id){
         return this.todoDao.selectTodoById(id);
     }
 
-    public int deleteTodoById(UUID id){
+    public UUID deleteTodoById(UUID id){
         return this.todoDao.deleteTodoById(id);
     }
 
-    public int updateTodoById(UUID id, TodoModel model) {
+    public UUID updateTodoById(UUID id, TodoModel model) {
         return this.todoDao.updateTodoById(id, model);
     }
 }

@@ -8,16 +8,13 @@ import java.util.UUID;
 
 public interface TodoDao {
 
-    UUID insertTodo(UUID id, TodoModel model);
-    default UUID insertTodo(TodoModel model) {
-        UUID id = UUID.randomUUID();
-
-        return insertTodo(id, model);
-    }
+    TodoModel insertTodo(TodoModel model);
 
     List<TodoModel> selectAllTodo();
-    Optional<TodoModel> selectTodoById(UUID id);
 
-    int deleteTodoById(UUID id);
-    int updateTodoById(UUID id, TodoModel model);
+    Optional<TodoModel> selectTodoById(UUID id);
+    List<TodoModel> selectTodoListByUserId(UUID userId);
+
+    UUID deleteTodoById(UUID id);
+    UUID updateTodoById(UUID id, TodoModel model);
 }
